@@ -1,7 +1,7 @@
 export const getToken = () => localStorage.getItem('token');
 
 async function req(path, { method = 'GET', body } = {}) {
-  const res = await fetch('https://merciless-life.onrender.com/api' + path, {
+  const res = await fetch('https://pilot-tur.onrender.com/api' + path, {
     method,
     headers: { 'Content-Type': 'application/json', ...(getToken() ? { Authorization: 'Bearer ' + getToken() } : {}) },
     body: body ? JSON.stringify(body) : undefined,
