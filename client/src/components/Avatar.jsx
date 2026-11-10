@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { getAvatarUrl } from '../avatarStore.js';
 // AI suhbatdosh: kasbga qarab kiyimi (dress-kod) o'zgaradi; ovoz balandligiga qarab lablari harakatlanadi.
 const SKIN = '#e3b48f';
 const HAT = ['military', 'police', 'pilot', 'fire', 'hardhat', 'chef'];
@@ -71,7 +73,7 @@ function Hat({ kind, color, accent }) {
   }
 }
 
-export default function Avatar({ outfit, level = 0 }) {
+function AvatarSVG({ outfit, level = 0 }) {
   const { kind = 'suit', color = '#27304f', accent = '#6d7cff' } = outfit || {};
   const mouthH = 3 + Math.min(1, level * 2.2) * 15;
   const hasHat = HAT.includes(kind);
@@ -94,5 +96,29 @@ export default function Avatar({ outfit, level = 0 }) {
       <path d={`M182 ${297} Q200 ${301 - mouthH / 6} 218 297`} stroke="#b4544f" strokeWidth="3" fill="none" strokeLinecap="round" />
       <Hat kind={kind} color={color} accent={accent} />
     </svg>
+  );
+}
+
+// Kasb rasmi: client/public/avatars/<kasb-id>.jpg (yoki .webp / .png) bo'lsa shu rasm ko'rsatiladi.
+// Rasm topilmasa, avvalgi chizilgan AI suhbatdosh chiqadi. Gapirganda rasm atrofida nur va yengil pulsatsiya bo'ladi.
+const EXTS = ['jpg', 'webp', 'png'];
+
+export default function Avatar({ outfit, level = 0 }) {
+  // i = -1: foydalanuvchi qo'ygan URL; 0..: public/avatars dagi fayl; oxirida chizilgan AI
+  const custom = getAvatarUrl(outfit.id);
+  const [i, setI] = useState(custom ? -1 : 0);
+  useEffect(() => setI(getAvatarUrl(outfit.id) ? -1 : 0), [outfit.id]);
+  if (i >= EXTS.length) return <AvatarSVG outfit={outfit} level={level} />;
+  const talk = Math.min(1, level * 1.4);
+  return (
+    <img
+      key={outfit.id + i}
+      className="avatar-photo"
+      src={i === -1 ? custom : `/avatars/${outfit.id}.${EXTS[i]}`}
+      referrerPolicy="no-referrer"
+      alt={outfit.title}
+      onError={() => setI(i + 1)}
+      style={{ transform: `scale(${1 + talk * 0.018})`, boxShadow: `0 0 ${10 + talk * 50}px ${talk * 14}px ${outfit.accent}` }}
+    />
   );
 }

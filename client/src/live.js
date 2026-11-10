@@ -44,6 +44,18 @@ export async function startLive({ session, stream, videoEl, onEntry, onPartial, 
       inputAudioTranscription: {},
       outputAudioTranscription: {},
       speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Puck' } } },
+      // Nomzodni tinglash: nutqni tez aniqlash, gap orasidagi pauzada javobni kutish, gapni bo'lganda AI jim bo'lishi
+      realtimeInputConfig: {
+        automaticActivityDetection: {
+          disabled: false,
+          startOfSpeechSensitivity: 'START_SENSITIVITY_HIGH',
+          endOfSpeechSensitivity: 'END_SENSITIVITY_LOW',
+          prefixPaddingMs: 150,
+          silenceDurationMs: 900,
+        },
+        activityHandling: 'START_OF_ACTIVITY_INTERRUPTS',
+        turnCoverage: 'TURN_INCLUDES_ONLY_ACTIVITY',
+      },
     },
     callbacks: {
       onopen: () => onStatus('live'),
@@ -62,6 +74,7 @@ export async function startLive({ session, stream, videoEl, onEntry, onPartial, 
   });
 
   // Mikrofon (16 kHz PCM)
+  await Promise.all([inCtx.resume(), outCtx.resume()]);
   await inCtx.audioWorklet.addModule('/pcm-worklet.js');
   const mic = inCtx.createMediaStreamSource(new MediaStream(stream.getAudioTracks()));
   const node = new AudioWorkletNode(inCtx, 'pcm-capture');
@@ -70,6 +83,8 @@ export async function startLive({ session, stream, videoEl, onEntry, onPartial, 
     live.sendRealtimeInput({ audio: { data: b64(e.data), mimeType: 'audio/pcm;rate=16000' } });
   };
   mic.connect(node);
+  // Worklet doim ishlashi uchun (ba'zi brauzerlarda chiqishsiz tugun to'xtab qoladi): ovozsiz chiqishga ulaymiz
+  const silent = inCtx.createGain(); silent.gain.value = 0; node.connect(silent); silent.connect(inCtx.destination);
 
   // Kamera (1 kadr/soniya, JPEG)
   const canvas = document.createElement('canvas'); canvas.width = 512; canvas.height = 384;

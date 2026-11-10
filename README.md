@@ -22,10 +22,8 @@ npm run dev               # http://localhost:5173
 
 Kamera/mikrofon faqat `localhost` yoki HTTPS da ishlaydi.
 
-## Email va SMS
-- `SMTP_*` to'ldirilsa, ro'yxatdan o'tish va har bir kirishda emailga 6 xonali kod yuboriladi.
-- Emaili yo'q foydalanuvchi telefon raqami bilan ro'yxatdan o'tadi, kod SMS orqali ketadi (`ESKIZ_*` — Eskiz.uz).
-- Sozlanmagan bo'lsa kodlar server konsoliga chiqadi; `DEV_SHOW_CODE=true` bo'lsa ekranda ham ko'rinadi. **Productionda `DEV_SHOW_CODE=false` qiling.**
+## Kirish
+- Ro'yxatdan o'tish va kirish faqat ism + parol bilan (email/SMS tasdiqlash yo'q).
 
 ## Tuzilma
 - `server/src/fields.js` — 20 ta kasb yo'nalishi, dress-kod turi va AI so'raydigan mavzular

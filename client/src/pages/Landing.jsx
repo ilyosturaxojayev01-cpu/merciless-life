@@ -69,9 +69,7 @@ export default function Landing() {
             <h2>Ro'yxatdan o'tish yo'riqnomasi</h2>
             <ol className="steps">
               <li><b>Quyida pastga tushing.</b> Shu bo'limni oxirigacha o'qib chiqing va «Men barchasini o'qib chiqib roziligimni bildirdim» katakchasini belgilang. Shundan so'ng yuqoridagi menyuda «Ro'yxatdan o'tish» tugmasi paydo bo'ladi.</li>
-              <li><b>Ma'lumotlarni kiriting.</b> Ism (kamida 3 belgi), parol (kamida 8 belgi) va elektron pochta manzilingiz kerak bo'ladi.</li>
-              <li><b>Emailingiz yo'qmi?</b> «Emailingiz yo'qmi?» tugmasini bosing va telefon raqamingizni kiriting (masalan, 90 123 45 67). Tasdiqlash kodi SMS orqali yuboriladi.</li>
-              <li><b>Kodni tasdiqlang.</b> 6 xonali kod 10 daqiqa amal qiladi. Email bilan ro'yxatdan o'tgan bo'lsangiz, har safar tizimga kirganingizda ham elektron pochtangizga autentifikatsiya kodi yuboriladi.</li>
+              <li><b>Ma'lumotlarni kiriting.</b> Ism (kamida 3 belgi) va parol (kamida 8 belgi) kerak bo'ladi. Email yoki telefon so'ralmaydi. Ro'yxatdan o'tgach to'g'ridan-to'g'ri yo'nalish tanlash sahifasiga o'tasiz.</li>
               <li><b>Yo'nalishni tanlang.</b> Kirgandan so'ng kasb yo'nalishi va til tanlanadi, brauzer kamera va mikrofonga ruxsat so'raydi. Ruxsat bering va suhbat boshlanadi.</li>
               <li><b>Suhbatni tugating.</b> Tayyor bo'lganingizda qizil telefon tugmasini bosing. Matn ko'rinishidagi yozuv avtomatik saqlanadi.</li>
             </ol>
@@ -84,11 +82,11 @@ export default function Landing() {
           <div>
             <h2>Xavfsizlik siyosati</h2>
             <h3>Qanday ma'lumotlar yig'iladi</h3>
-            <p>Ism, parol (faqat kuchli shifrlangan ko'rinishda), email yoki telefon raqami hamda suhbat matni (savollar va javoblar). Kamera tasviri va ovozingiz saqlanmaydi: suhbat vaqtida ular faqat AI xizmatiga jonli uzatiladi.</p>
+            <p>Ism, parol (faqat kuchli shifrlangan ko'rinishda) hamda suhbat matni (savollar va javoblar). Kamera tasviri va ovozingiz saqlanmaydi: suhbat vaqtida ular faqat AI xizmatiga jonli uzatiladi.</p>
             <h3>AI xizmati</h3>
             <p>Jonli suhbat Google Gemini Live xizmati orqali ishlaydi. Kamera kadrlari va ovoz suhbat davomida Google serverlariga uzatiladi va ular Google shartlariga muvofiq qayta ishlanadi. Suhbat paytida parol, bank kartasi raqami, pasport ma'lumotlari kabi maxfiy ma'lumotlarni aytmang.</p>
             <h3>Hisobingiz himoyasi</h3>
-            <p>Parollar bcrypt yordamida shifrlab saqlanadi. Tasdiqlash kodlari 10 daqiqadan keyin o'chib ketadi va 5 marta noto'g'ri kiritilsa bloklanadi. Seanslar 7 kun amal qiladi. Hisobingizga kirish uchun parolga qo'shimcha ravishda email yoki SMS kodi talab qilinadi.</p>
+            <p>Parollar bcrypt yordamida shifrlab saqlanadi. Seanslar 7 kun amal qiladi. Parolni hech kimga bermang.</p>
             <h3>Matn yozuvlari</h3>
             <p>Suhbat matni faqat sizga ko'rinadi. Istalgan yozuvni «Suhbatlar tarixi» bo'limida o'zingiz o'chirib tashlashingiz mumkin, o'chirilgan yozuv bazadan butunlay olib tashlanadi.</p>
             <h3>Vaqt va sana</h3>

@@ -143,3 +143,19 @@ h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0 0 .5em}
   .call-body{grid-template-columns:1fr;grid-template-rows:1fr 190px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Kasb rasmi (client/public/avatars/<id>.jpg) */
+.avatar-photo{display:block;height:100%;width:100%;object-fit:cover;object-position:center top;transition:transform .08s linear,box-shadow .1s linear}
+
+/* Kasb uchun rasm URL qo'yish paneli */
+.imgbox{display:flex;gap:18px;align-items:flex-start;margin:22px 0;padding:18px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18)}
+.imgprev{flex:0 0 130px;height:130px;border-radius:18px;overflow:hidden;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:2.4rem;text-align:center}
+.imgprev img{width:100%;height:100%;object-fit:cover;object-position:center top}.imgprev span{font-size:.9rem}
+.imgform{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.imgform input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:inherit;font:inherit}
+.imgform .row{display:flex;gap:10px}
+@media(max-width:600px){.imgbox{flex-direction:column}}
+
+.imgmodal{position:fixed;inset:0;z-index:40;background:rgba(5,2,20,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
+.imgmodal .imgbox{margin:0;max-width:680px;width:100%;background:#1a1040;max-height:90vh;overflow:auto}
+.imgx{float:right;background:none;border:0;color:inherit;font-size:1.1rem;cursor:pointer}
